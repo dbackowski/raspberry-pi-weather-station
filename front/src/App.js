@@ -1,38 +1,34 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
   state = {
-    response: ''
+    forecast: ''
   };
 
   componentDidMount() {
     this.callApi()
-      .then(res => this.setState({ response: res.express }))
+      .then(res => this.setState({ forecast: JSON.parse(res) }))
       .catch(err => console.log(err));
   }
 
   callApi = async () => {
-    const response = await fetch('/api/hello');
+    const response = await fetch('/api/forecast');
     const body = await response.json();
 
     if (response.status !== 200) throw Error(body.message);
-
     return body;
   };
 
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-        <p className="App-intro">{this.state.response}</p>
+        <p className="App-intro">{this.state.forecast ? this.state.forecast.daily.data[0].summary : ''}</p>
+        <p className="App-intro">{this.state.forecast ? this.state.forecast.daily.data[0].icon : ''}</p>
+        <p className="App-intro">temp. min {this.state.forecast ? this.state.forecast.daily.data[0].temperatureMin : ''}</p>
+        <p className="App-intro">temp. max {this.state.forecast ? this.state.forecast.daily.data[0].temperatureMax : ''}</p>
+        <p className="App-intro">{this.state.forecast ? this.state.forecast.daily.data[0].apparentTemperatureMin : ''}</p>
+        <p className="App-intro">{this.state.forecast ? this.state.forecast.daily.data[0].apparentTemperatureMax : ''}</p>
       </div>
     );
   }
