@@ -3,32 +3,50 @@ import './App.css';
 
 class App extends Component {
   state = {
-    forecast: ''
+    forecast: null,
+    isLoading: true,
+    error: null
   };
 
   componentDidMount() {
     this.callApi()
-      .then(res => this.setState({ forecast: JSON.parse(res) }))
-      .catch(err => console.log(err));
+      .then(response => this.setState({ forecast: response, isLoading: false }))
+      .catch(error => this.setState({ error, isLoading: false }));
   }
 
   callApi = async () => {
     const response = await fetch('/api/forecast');
-    const body = await response.json();
+    const body = await response;
 
-    if (response.status !== 200) throw Error(body.message);
-    return body;
+    if (response.status !== 200) throw Error('Error occured during fetching the forecast');
+    return body.json();
   };
 
   render() {
+    const { forecast, isLoading, error } = this.state;
+
+    if (isLoading) {
+      return (
+        <div className="App">
+          <p>Loading ...</p>
+        </div>
+      )
+    }
+
+    if (error) {
+      return (
+        <div className="App">
+          <p>{error.message}</p>
+        </div>
+      )
+    }
+
     return (
       <div className="App">
-        <p className="App-intro">{this.state.forecast ? this.state.forecast.daily.data[0].summary : ''}</p>
-        <p className="App-intro">{this.state.forecast ? this.state.forecast.daily.data[0].icon : ''}</p>
-        <p className="App-intro">temp. min {this.state.forecast ? this.state.forecast.daily.data[0].temperatureMin : ''}</p>
-        <p className="App-intro">temp. max {this.state.forecast ? this.state.forecast.daily.data[0].temperatureMax : ''}</p>
-        <p className="App-intro">{this.state.forecast ? this.state.forecast.daily.data[0].apparentTemperatureMin : ''}</p>
-        <p className="App-intro">{this.state.forecast ? this.state.forecast.daily.data[0].apparentTemperatureMax : ''}</p>
+        <p className="App-intro">{forecast.daily.data[0].summary}</p>
+        <p className="App-intro">{forecast.daily.data[0].icon}</p>
+        <p className="App-intro">temp. min {forecast.daily.data[0].temperatureMin}</p>
+        <p className="App-intro">temp. max {forecast.daily.data[0].temperatureMax}</p>
       </div>
     );
   }
