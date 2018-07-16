@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Weather from './components/Weather.js';
+import 'bootstrap/dist/css/bootstrap.css';
 
 class App extends Component {
   state = {
@@ -11,7 +12,7 @@ class App extends Component {
 
   componentDidMount() {
     this.callApi()
-      .then(response => { console.log(response); this.setState({ forecast: response, isLoading: false }) })
+      .then(response => this.setState({ forecast: response, isLoading: false }))
       .catch(error => this.setState({ error, isLoading: false }));
   }
 

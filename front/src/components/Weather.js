@@ -26,19 +26,32 @@ const Weather = ({ city, icon, summary, tempMin, tempMax }) => {
   }
 
   return (
-    <div className={"weather " + bgColorClass()}>
-      <div className="city">{city}</div>
-      <div className="icon">
-        <Skycons
-          color='white'
-          icon={icon.toUpperCase()}
-          autoplay={true}
-        />
+    <div className={"container-fluid weather " + bgColorClass()}>
+      <div className="row">
+        <div className="col text-center">
+          <div className="city">{city}</div>
+        </div>
       </div>
-      <div className="temp">Temp. min {tempMin}&deg;C</div>
-      <div className="temp">Temp. max {tempMax}&deg;C</div>
-      <div className="clear"></div>
-      <div className="summary">{summary}</div>
+      <div className="row justify-content-center">
+        <div className="col-xs ">
+          <div className="icon">
+            <Skycons
+              color='white'
+              icon={icon.toUpperCase().replace(/-/g, '_')}
+              autoplay={true}
+            />
+          </div>
+        </div>
+        <div className="col-xs">
+          <div className="temp">Temp. min {tempMin}&deg;C</div>
+          <div className="temp">Temp. max {tempMax}&deg;C</div>
+        </div>
+      </div>
+      <div className="row">
+        <div className="col text-center">
+          <div className="summary">{summary}</div>
+        </div>
+      </div>
     </div>
   );
 };
@@ -47,8 +60,8 @@ Weather.propTypes = {
   city: PropTypes.string.isRequired,
   icon: PropTypes.string.isRequired,
   summary: PropTypes.string.isRequired,
-  tempMin: PropTypes.string.isRequired,
-  tempMax: PropTypes.string.isRequired
+  tempMin: PropTypes.number.isRequired,
+  tempMax: PropTypes.number.isRequired
 }
 
 export default Weather;
