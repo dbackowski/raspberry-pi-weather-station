@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import Weather from './components/Weather.js';
 
 class App extends Component {
   state = {
@@ -10,7 +11,7 @@ class App extends Component {
 
   componentDidMount() {
     this.callApi()
-      .then(response => this.setState({ forecast: response, isLoading: false }))
+      .then(response => { console.log(response); this.setState({ forecast: response, isLoading: false }) })
       .catch(error => this.setState({ error, isLoading: false }));
   }
 
@@ -27,7 +28,7 @@ class App extends Component {
 
     if (isLoading) {
       return (
-        <div className="App">
+        <div>
           <p>Loading ...</p>
         </div>
       )
@@ -35,19 +36,20 @@ class App extends Component {
 
     if (error) {
       return (
-        <div className="App">
+        <div>
           <p>{error.message}</p>
         </div>
       )
     }
 
     return (
-      <div className="App">
-        <p className="App-intro">{forecast.daily.data[0].summary}</p>
-        <p className="App-intro">{forecast.daily.data[0].icon}</p>
-        <p className="App-intro">temp. min {forecast.daily.data[0].temperatureMin}</p>
-        <p className="App-intro">temp. max {forecast.daily.data[0].temperatureMax}</p>
-      </div>
+      <Weather
+        city="Kraków"
+        icon={forecast.daily.data[0].icon}
+        summary={forecast.daily.data[0].summary}
+        tempMin={forecast.daily.data[0].temperatureMin}
+        tempMax={forecast.daily.data[0].temperatureMax}
+      />
     );
   }
 }
