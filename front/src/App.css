@@ -29,10 +29,25 @@
   text-transform: uppercase;
   letter-spacing: 2px;
   text-align: center;
+  padding: 10px;
 }
 
 .icon {
   text-align: center;
-  height: 90px;
-  width: 100px;
+  height: 100px;
+  width: 120px;
+  float: left;
+}
+
+.temp {
+  font-size: 24px;
+  padding: 2px;
+}
+
+.clear {
+  clear: both;
+}
+
+.summary {
+  font-size: 22px;
 }

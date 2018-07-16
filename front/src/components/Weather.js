@@ -27,17 +27,18 @@ const Weather = ({ city, icon, summary, tempMin, tempMax }) => {
 
   return (
     <div className={"weather " + bgColorClass()}>
-      <p className="city">{city}</p>
-      <p className="icon">
+      <div className="city">{city}</div>
+      <div className="icon">
         <Skycons
           color='white'
           icon={icon.toUpperCase()}
           autoplay={true}
         />
-      </p>
-      <p>{summary}</p>
-      <p>Temp. min {tempMin}</p>
-      <p>Temp. max {tempMax}</p>
+      </div>
+      <div className="temp">Temp. min {tempMin}&deg;C</div>
+      <div className="temp">Temp. max {tempMax}&deg;C</div>
+      <div className="clear"></div>
+      <div className="summary">{summary}</div>
     </div>
   );
 };
