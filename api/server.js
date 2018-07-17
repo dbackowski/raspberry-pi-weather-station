@@ -10,7 +10,7 @@ app.get('/api/forecast', async (req, res) => {
   const geocode = await request({ uri: geoApiUri, json: true });
   const { lat, lng } = geocode['results'][0]['geometry']['location'];
 
-  const forecastUri = `https://api.darksky.net/forecast/${dotEnvConfig.parsed['DARK_SKY_API_KEY']}/${lat},${lng}?units=si`;
+  const forecastUri = `https://api.darksky.net/forecast/${dotEnvConfig.parsed['DARK_SKY_API_KEY']}/${lat},${lng}?units=si&lang=pl`;
   const forecast = await request({ uri: forecastUri, json: true });
   res.json(forecast);
 });
