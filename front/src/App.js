@@ -48,8 +48,8 @@ class App extends Component {
         city="Kraków"
         icon={forecast.daily.data[0].icon}
         summary={forecast.daily.data[0].summary}
-        tempMin={forecast.daily.data[0].temperatureMin}
-        tempMax={forecast.daily.data[0].temperatureMax}
+        tempMin={Math.round(forecast.daily.data[0].temperatureMin)}
+        tempMax={Math.round(forecast.daily.data[0].temperatureMax)}
       />
     );
   }
