@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Skycons from 'react-skycons';
 
-const Weather = ({ city, icon, summary, tempMin, tempMax }) => {
+const Weather = ({ city, icon, summary, tempMin, tempMax, pm25, pm10 }) => {
   function bgColorClass() {
     let result;
 
@@ -52,6 +52,14 @@ const Weather = ({ city, icon, summary, tempMin, tempMax }) => {
           <div className="summary">{summary}</div>
         </div>
       </div>
+      <div className="row">
+        <div className="col text-center">
+          <div className="pm">PM 2.5: {pm25}</div>
+        </div>
+        <div className="col text-center">
+          <div className="pm">PM 10: {pm10}</div>
+        </div>
+      </div>
     </div>
   );
 };
@@ -61,7 +69,9 @@ Weather.propTypes = {
   icon: PropTypes.string.isRequired,
   summary: PropTypes.string.isRequired,
   tempMin: PropTypes.number.isRequired,
-  tempMax: PropTypes.number.isRequired
+  tempMax: PropTypes.number.isRequired,
+  pm25: PropTypes.number.isRequired,
+  pm10: PropTypes.number.isRequired
 }
 
 export default Weather;

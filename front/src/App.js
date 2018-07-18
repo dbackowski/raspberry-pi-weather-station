@@ -6,17 +6,25 @@ import 'bootstrap/dist/css/bootstrap.css';
 class App extends Component {
   state = {
     forecast: null,
+    pollution: null,
     isLoading: true,
     error: null
   };
 
   componentDidMount() {
-    this.callApi()
-      .then(response => this.setState({ forecast: response, isLoading: false }))
-      .catch(error => this.setState({ error, isLoading: false }));
+    Promise.all([
+      this.callForeactApi(),
+      this.callAirPollutionApi()
+    ])
+    .then(response => {
+      console.log(response);
+      this.setState({ forecast: response[0], pollution: response[1], isLoading: false })
+
+    })
+    .catch(error => this.setState({ error, isLoading: false }));
   }
 
-  callApi = async () => {
+  callForeactApi = async () => {
     const response = await fetch('/api/forecast');
     const body = await response;
 
@@ -24,8 +32,16 @@ class App extends Component {
     return body.json();
   };
 
+  callAirPollutionApi = async () => {
+    const response = await fetch('/api/air');
+    const body = await response;
+
+    if (response.status !== 200) throw Error('Error occured during fetching the air pollution');
+    return body.json();
+  };
+
   render() {
-    const { forecast, isLoading, error } = this.state;
+    const { forecast, pollution, isLoading, error } = this.state;
 
     if (isLoading) {
       return (
@@ -50,6 +66,8 @@ class App extends Component {
         summary={forecast.daily.data[0].summary}
         tempMin={Math.round(forecast.daily.data[0].temperatureMin)}
         tempMax={Math.round(forecast.daily.data[0].temperatureMax)}
+        pm25={Math.round(pollution.pm25)}
+        pm10={Math.round(pollution.pm10)}
       />
     );
   }
