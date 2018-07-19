@@ -9,7 +9,7 @@ const Weather = ({ city, icon, summary, tempMin, tempMax, pm25, pm10 }) => {
     if (tempMax >= 30) {
       result = 'very-warm';
     }
-    else if (tempMax > 20 && tempMax < 30) {
+    else if (tempMax >= 20 && tempMax < 30) {
       result = 'warm';
     }
     else if (tempMax > 10 && tempMax < 20) {
