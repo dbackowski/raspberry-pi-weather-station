@@ -13,7 +13,7 @@ const getLatAndLng = async () => {
 };
 
 app.get('/api/forecast', async (req, res) => {
-  const forecastUri = `https://api.darksky.net/forecast/${dotEnvConfig.parsed['DARK_SKY_API_KEY']}/${lat},${lng}?units=si&lang=pl`;
+  const forecastUri = `https://api.darksky.net/forecast/${dotEnvConfig.parsed['DARK_SKY_API_KEY']}/${lat},${lng}?units=ca&lang=pl`;
   const forecast = await request({ uri: forecastUri, json: true });
   res.json(forecast);
 });

@@ -23,26 +23,30 @@
 }
 
 .city {
-  font-size: 24px;
+  font-size: 20px;
   text-transform: uppercase;
   letter-spacing: 2px;
   text-align: center;
-  padding: 10px;
 }
 
 .icon {
   text-align: center;
-  height: 100px;
-  width: 140px;
+  height: 40px;
+  width: 50px;
 }
 
 .temp {
-  font-size: 24px;
+  font-size: 20px;
+  padding: 2px;
+}
+
+.wind-speed {
+  font-size: 20px;
   padding: 2px;
 }
 
 .summary {
-  font-size: 22px;
+  font-size: 20px;
 }
 
 .container-fluid {
@@ -50,6 +54,6 @@
 }
 
 .pm {
-  font-size: 24px;
+  font-size: 20px;
   padding: 5px;
 }

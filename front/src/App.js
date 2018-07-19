@@ -63,11 +63,13 @@ class App extends Component {
       <Weather
         city="Kraków"
         icon={forecast.daily.data[0].icon}
+        windSpeed={forecast.daily.data[0].windSpeed}
         summary={forecast.daily.data[0].summary}
         tempMin={Math.round(forecast.daily.data[0].temperatureMin)}
         tempMax={Math.round(forecast.daily.data[0].temperatureMax)}
         pm25={Math.round(pollution.pm25)}
         pm10={Math.round(pollution.pm10)}
+        hourly={forecast.hourly}
       />
     );
   }
