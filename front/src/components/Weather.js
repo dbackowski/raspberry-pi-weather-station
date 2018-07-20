@@ -33,7 +33,7 @@ const Weather = ({ city, icon, windSpeed, summary, tempMin, tempMax, pm25, pm10,
           <div className="city">{city}</div>
         </div>
         <div className="col-xs">
-          <div className="icon">
+          <div className="icon-today">
             <Skycons
               color='white'
               icon={icon.toUpperCase().replace(/-/g, '_')}
@@ -51,14 +51,16 @@ const Weather = ({ city, icon, windSpeed, summary, tempMin, tempMax, pm25, pm10,
           <div className="temp">max&nbsp;{tempMax}&deg;C</div>
         </div>
       </div>
+      <hr/>
       <div className="row justify-content-center">
-        {hourly.data.slice(0,9).map((object, i) => <div className="col-xs" style={{padding: '5px'}} key={object.time}><HourWeather data={object} /></div>)}
+        {hourly.data.slice(0,9).map((object, i) => <div className="col-xs" style={{padding: '3px'}} key={object.time}><HourWeather data={object} /></div>)}
       </div>
       <div className="row">
         <div className="col text-center">
           <div className="summary">{summary}</div>
         </div>
       </div>
+      <hr/>
       <div className="row">
         <div className="col text-center">
           <div className="pm">PM 2.5: {pm25}&nbsp;μg/m3</div>

@@ -6,7 +6,7 @@ const HourWeather = ({ data }) => {
   return (
     <div>
       {new Date(data.time * 1000).getHours()}:00
-      <div style={{width: '40px', height: '30px'}}>
+      <div className="icon-hourly">
         <Skycons
           color='white'
           icon={data.icon.toUpperCase().replace(/-/g, '_')}
