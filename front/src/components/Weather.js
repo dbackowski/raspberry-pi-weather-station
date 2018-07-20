@@ -2,9 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Skycons from 'react-skycons';
 import HourWeather from './HourWeather';
+import AirPollution from './AirPollution';
 
-const Weather = ({ city, icon, windSpeed, summary, tempMin, tempMax, pm25, pm10, hourly }) => {
-  function bgColorClass() {
+const Weather = ({ city, icon, windSpeed, summary, tempMin, tempMax, hourly, pollutionLevel, pm25, pm10 }) => {
+  const bgColorClass = () => {
     let result;
 
     if (tempMax >= 30) {
@@ -61,14 +62,11 @@ const Weather = ({ city, icon, windSpeed, summary, tempMin, tempMax, pm25, pm10,
         </div>
       </div>
       <hr/>
-      <div className="row">
-        <div className="col text-center">
-          <div className="pm">PM 2.5: {pm25}&nbsp;μg/m3</div>
-        </div>
-        <div className="col text-center">
-          <div className="pm">PM 10: {pm10}&nbsp;μg/m3</div>
-        </div>
-      </div>
+      <AirPollution
+        pollutionLevel={pollutionLevel}
+        pm25={pm25}
+        pm10={pm10}
+      />
     </div>
   );
 };
@@ -80,9 +78,10 @@ Weather.propTypes = {
   summary: PropTypes.string.isRequired,
   tempMin: PropTypes.number.isRequired,
   tempMax: PropTypes.number.isRequired,
+  hourly: PropTypes.object.isRequired,
+  pollutionLevel: PropTypes.number.isRequired,
   pm25: PropTypes.number.isRequired,
-  pm10: PropTypes.number.isRequired,
-  hourly: PropTypes.object.isRequired
+  pm10: PropTypes.number.isRequired
 }
 
 export default Weather;

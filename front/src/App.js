@@ -67,9 +67,10 @@ class App extends Component {
         summary={forecast.daily.data[0].summary}
         tempMin={Math.round(forecast.daily.data[0].temperatureMin)}
         tempMax={Math.round(forecast.daily.data[0].temperatureMax)}
+        hourly={forecast.hourly}
+        pollutionLevel={pollution.pollutionLevel}
         pm25={Math.round(pollution.pm25)}
         pm10={Math.round(pollution.pm10)}
-        hourly={forecast.hourly}
       />
     );
   }
