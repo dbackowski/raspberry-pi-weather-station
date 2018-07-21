@@ -16,16 +16,20 @@ const AirPolution = ({ pollutionLevel, pm25, pm10 }) => {
     6: faDizzy
   }
 
+  const pm25percentage = () => pm25 * 100 / 25;
+
+  const pm10percentage = () => pm10 * 100 / 50;
+
   return (
     <div className="row">
       <div className="col-2 text-center">
         <FontAwesomeIcon icon={pollutionLevelIcons[pollutionLevel]} size="3x"/>
       </div>
       <div className="col text-center">
-        <div className="pm">PM 2.5: {pm25}&nbsp;μg/m3</div>
+        <div className="pm">PM 2.5: {pm25}&nbsp;μg/m3 ({pm25percentage()} %)</div>
       </div>
       <div className="col text-center">
-        <div className="pm">PM 10: {pm10}&nbsp;μg/m3</div>
+        <div className="pm">PM 10: {pm10}&nbsp;μg/m3 ({pm10percentage()} %)</div>
       </div>
     </div>
   );
