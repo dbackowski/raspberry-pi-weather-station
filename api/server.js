@@ -1,8 +1,10 @@
 const express = require('express');
 const dotEnvConfig = require('dotenv').config();
-const request = require('request-promise-native')
+const request = require('request-promise-native');
+const cors = require('cors');
 
 const app = express();
+app.use(cors());
 const port = process.env.PORT || 8080;
 let lat, lng;
 

@@ -25,7 +25,7 @@ class App extends Component {
   }
 
   callForeactApi = async () => {
-    const response = await fetch('/api/forecast');
+    const response = await fetch('http://localhost:8080/api/forecast');
     const body = await response;
 
     if (response.status !== 200) throw Error('Error occured during fetching the forecast');
@@ -33,7 +33,7 @@ class App extends Component {
   };
 
   callAirPollutionApi = async () => {
-    const response = await fetch('/api/air');
+    const response = await fetch('http://localhost:8080/api/air');
     const body = await response;
 
     if (response.status !== 200) throw Error('Error occured during fetching the air pollution');
