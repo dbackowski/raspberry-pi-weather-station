@@ -5,7 +5,7 @@
     "front-dev": "cd front && yarn start",
     "api-dev": "cd api && nodemon server.js",
     "predev": "yarn && cd front && yarn",
-    "dev": "concurrently --kill-others-on-fail \"yarn api\" \"yarn front\"",
+    "dev": "concurrently --kill-others-on-fail \"yarn api-dev\" \"yarn front-dev\"",
     "front-prod": "cd front && yarn build && serve -l tcp://127.0.0.1:3000 -s build",
     "api-prod": "cd api && node server.js",
     "prestart": "yarn && cd front && yarn",
