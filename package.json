@@ -2,9 +2,14 @@
   "name": "raspberry-pi-weather-station",
   "version": "1.0.0",
   "scripts": {
-    "front": "cd front && yarn start",
-    "api": "cd api && nodemon server.js",
-    "start": "concurrently --kill-others-on-fail \"yarn api\" \"yarn front\""
+    "front-dev": "cd front && yarn start",
+    "api-dev": "cd api && nodemon server.js",
+    "predev": "yarn && cd front && yarn",
+    "dev": "concurrently --kill-others-on-fail \"yarn api\" \"yarn front\"",
+    "front-prod": "cd front && yarn build && serve -l tcp://127.0.0.1:3000 -s build",
+    "api-prod": "cd api && node server.js",
+    "prestart": "yarn && cd front && yarn",
+    "start": "concurrently --kill-others-on-fail \"yarn api-prod\" \"yarn front-prod\""
   },
   "dependencies": {
     "cors": "^2.8.4",
@@ -13,7 +18,8 @@
     "global": "^4.3.2",
     "nodemon": "^1.17.5",
     "request": "^2.87.0",
-    "request-promise-native": "^1.0.5"
+    "request-promise-native": "^1.0.5",
+    "serve": "^9.3.0"
   },
   "devDependencies": {
     "concurrently": "^3.6.0"
