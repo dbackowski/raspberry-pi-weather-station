@@ -6,12 +6,16 @@ const cors = require('cors');
 const app = express();
 app.use(cors());
 const port = process.env.PORT || 8080;
-let lat, lng;
+let lat, lng, locationName;
 
 const getLatAndLng = async () => {
   const geoApiUri = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(dotEnvConfig.parsed['CITY'])}&key=${dotEnvConfig.parsed['GOOGLE_API_KEY']}`;
   const geocode = await request({ uri: geoApiUri, json: true });
-  return geocode['results'][0]['geometry']['location'];
+  return {
+    lat: geocode['results'][0]['geometry']['location']['lat'],
+    lng: geocode['results'][0]['geometry']['location']['lng'],
+    locationName: geocode['results'][0]['formatted_address']
+  }
 };
 
 app.get('/api/forecast', async (req, res) => {
@@ -26,10 +30,14 @@ app.get('/api/air', async (req, res) => {
   res.json(pollution);
 });
 
+app.get('/api/location', (req, res) => {
+  res.json({locationName});
+});
+
 app.listen(port, () => {
   getLatAndLng()
   .then(response => {
-    ({ lat, lng } = response);
+    ({ lat, lng, locationName } = response);
     console.log(`Listening on port ${port}`);
   })
   .catch(error => {

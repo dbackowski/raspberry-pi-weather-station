@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 class App extends Component {
   state = {
+    locationName: null,
     forecast: null,
     pollution: null,
     isLoading: true,
@@ -13,13 +14,18 @@ class App extends Component {
 
   componentDidMount() {
     Promise.all([
+      this.callLocationApi(),
       this.callForeactApi(),
       this.callAirPollutionApi()
     ])
     .then(response => {
       console.log(response);
-      this.setState({ forecast: response[0], pollution: response[1], isLoading: false })
-
+      this.setState({
+        locationName: response[0].locationName,
+        forecast: response[1],
+        pollution: response[2],
+        isLoading: false
+      });
     })
     .catch(error => this.setState({ error, isLoading: false }));
   }
@@ -40,8 +46,14 @@ class App extends Component {
     return body.json();
   };
 
+  callLocationApi = async() => {
+    const response = await fetch('http://localhost:8080/api/location');
+    const body = await response;
+    return body.json();
+  };
+
   render() {
-    const { forecast, pollution, isLoading, error } = this.state;
+    const { locationName, forecast, pollution, isLoading, error } = this.state;
 
     if (isLoading) {
       return (
@@ -61,9 +73,10 @@ class App extends Component {
 
     return (
       <Weather
-        city="Kraków"
+        city={locationName}
         icon={forecast.daily.data[0].icon}
         windSpeed={forecast.daily.data[0].windSpeed}
+        pressure={forecast.daily.data[0].pressure}
         summary={forecast.daily.data[0].summary}
         tempMin={Math.round(forecast.daily.data[0].temperatureMin)}
         tempMax={Math.round(forecast.daily.data[0].temperatureMax)}

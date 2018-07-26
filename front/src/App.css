@@ -23,15 +23,9 @@
 }
 
 hr {
-
   background-color:white;
-}
-
-.city {
-  font-size: 20px;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  text-align: center;
+  margin-bottom: 5px;
+  margin-top: 5px;
 }
 
 .icon-today {
@@ -44,25 +38,6 @@ hr {
   width: 45px;
 }
 
-.temp {
-  font-size: 20px;
-  padding: 2px;
-}
-
-.wind-speed {
-  font-size: 20px;
-  padding: 2px;
-}
-
-.summary {
-  font-size: 20px;
-}
-
 .container-fluid {
   height: 100vh;
-}
-
-.pm {
-  font-size: 20px;
-  padding: 5px;
 }

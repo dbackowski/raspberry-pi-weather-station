@@ -26,10 +26,18 @@ const AirPolution = ({ pollutionLevel, pm25, pm10 }) => {
         <FontAwesomeIcon icon={pollutionLevelIcons[pollutionLevel]} size="3x"/>
       </div>
       <div className="col text-center">
-        <div className="pm">PM 2.5: {pm25}&nbsp;μg/m3 ({pm25percentage()} %)</div>
+        <div className="pm">
+          PM 2.5: {pm25}&nbsp;μg/m3
+          <br/>
+          ({pm25percentage()} %)
+        </div>
       </div>
       <div className="col text-center">
-        <div className="pm">PM 10: {pm10}&nbsp;μg/m3 ({pm10percentage()} %)</div>
+        <div className="pm">
+          PM 10: {pm10}&nbsp;μg/m3
+          <br/>
+          ({pm10percentage()} %)
+        </div>
       </div>
     </div>
   );

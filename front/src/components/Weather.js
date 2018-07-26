@@ -4,7 +4,7 @@ import Skycons from 'react-skycons';
 import HourWeather from './HourWeather';
 import AirPollution from './AirPollution';
 
-const Weather = ({ city, icon, windSpeed, summary, tempMin, tempMax, hourly, pollutionLevel, pm25, pm10 }) => {
+const Weather = ({ city, icon, windSpeed, pressure, summary, tempMin, tempMax, hourly, pollutionLevel, pm25, pm10 }) => {
   const bgColorClass = () => {
     let result;
 
@@ -30,10 +30,10 @@ const Weather = ({ city, icon, windSpeed, summary, tempMin, tempMax, hourly, pol
   return (
     <div className={"container-fluid weather " + bgColorClass()}>
       <div className="row justify-content-center">
-        <div className="col-xs">
+        <div className="col-4">
           <div className="city">{city}</div>
         </div>
-        <div className="col-xs">
+        <div className="col-2">
           <div className="icon-today">
             <Skycons
               color='white'
@@ -42,13 +42,12 @@ const Weather = ({ city, icon, windSpeed, summary, tempMin, tempMax, hourly, pol
             />
           </div>
         </div>
-        <div className="col-xs">
+        <div className="col">
           <div className="wind-speed">{windSpeed}&nbsp;kph</div>
+          <div className="wind-speed">{pressure}&nbsp;hPa</div>
         </div>
-        <div className="col-xs">
+        <div className="col text-right">
           <div className="temp">min&nbsp;{tempMin}&deg;C</div>
-        </div>
-        <div className="col-xs">
           <div className="temp">max&nbsp;{tempMax}&deg;C</div>
         </div>
       </div>
@@ -75,6 +74,7 @@ Weather.propTypes = {
   city: PropTypes.string.isRequired,
   icon: PropTypes.string.isRequired,
   windSpeed: PropTypes.number.isRequired,
+  pressure: PropTypes.number.isRequired,
   summary: PropTypes.string.isRequired,
   tempMin: PropTypes.number.isRequired,
   tempMax: PropTypes.number.isRequired,
