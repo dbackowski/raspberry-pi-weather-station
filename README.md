@@ -42,3 +42,7 @@ Open browser on URL:
 ```
 http://127.0.0.1:3000
 ```
+
+## License
+
+Released under the MIT License.
