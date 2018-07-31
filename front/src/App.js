@@ -57,16 +57,32 @@ class App extends Component {
 
     if (isLoading) {
       return (
-        <div>
-          <p>Loading ...</p>
+        <div class="vertical-center" >
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <div className="alert alert-primary">
+                  Loading ...
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       )
     }
 
     if (error) {
       return (
-        <div>
-          <p>{error.message}</p>
+        <div class="vertical-center" >
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <div className="alert alert-danger">
+                  {error.message}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       )
     }
