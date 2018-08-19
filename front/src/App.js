@@ -61,7 +61,7 @@ class App extends Component {
           <div class="container">
             <div class="row">
               <div class="col">
-                <div className="alert alert-primary">
+                <div className="alert alert-primary text-center">
                   Loading ...
                 </div>
               </div>
