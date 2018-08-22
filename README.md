@@ -1,6 +1,6 @@
 # Simple Raspberry Pi Weather Station
 
-<img src="https://i.imgur.com/yWKUl78.jpg" width="250"> <img src="https://i.imgur.com/rcDsNty.jpg" width="250"> <img src="https://i.imgur.com/5E2onOY.jpg" width="250">
+<img src="https://i.imgur.com/h3m4LHu.jpg" width="250"> <img src="https://i.imgur.com/UFWXJWa.jpg" width="250"> <img src="https://i.imgur.com/P05UYfm.jpg" width="250"> 
 
 
 ## Hardware
